@@ -2,21 +2,25 @@ import React from 'react';
 import './App.css';
 
 export default class App extends React.Component {
-  state = {
-    isUpperCase: false
+    state = {
+      appData: 'React Marathon',
+      isUpperCase: false 
+    };
+
+  handleClick = () => {
+    this.setState(prevState => ({
+      isUpperCase: !prevState.isUpperCase
+    }));
   };
 
-  toggleCase = () => {
-    this.setState(prevState => ({
-      isUpperCase: !prevState.isUpperCase,
-    }))
-  }
-
   render() {
-    const text = "React Marathon"
-    const displayText = this.state.isUpperCase ? text.toUpperCase() : text.toLowerCase();
-    return <div onClick={this.toggleCase}>
-      {displayText}
-    </div>    
+    const switchCase = this.state.isUpperCase
+    ? this.state.appData.toUpperCase()
+    : this.state.appData.toLowerCase();
+    return (
+      <div onClick={this.handleClick}>
+        {switchCase}
+      </div>
+    );
   }
 }
